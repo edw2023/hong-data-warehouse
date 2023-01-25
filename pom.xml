@@ -38,6 +38,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>ch.cern.hbase</groupId>
+			<artifactId>hbase-client</artifactId>
+			<version>2.2.4_1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
