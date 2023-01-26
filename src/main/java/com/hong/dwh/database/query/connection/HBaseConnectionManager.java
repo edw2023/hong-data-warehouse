@@ -54,6 +54,9 @@ public class HBaseConnectionManager {
         try {
             ConnectionFactory.createConnection(hBaseConfig);
         } catch (IOException e) {
+            log.error(" - Error in connecting to HBase",e);
+            closeConnection();
+            Thread.currentThread().interrupt();
             throw new RuntimeException(e);
         }
         return null;
