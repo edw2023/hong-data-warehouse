@@ -31,6 +31,8 @@ public class HBaseQueryExecutor implements QueryExecutor {
             scanner = table.getScanner(scan);
             log.info(" - Response received from HBase");
         } catch (IOException e) {
+            log.error(" - Error in getting data from HBase" + e.getMessage());
+            HBaseConnectionManager.getInstance().closeConnection();
             throw new RuntimeException(e);
         }
 
