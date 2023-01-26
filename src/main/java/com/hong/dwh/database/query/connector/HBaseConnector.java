@@ -1,7 +1,7 @@
-package com.hong.dwh.database.query.connection;
+package com.hong.dwh.database.query.connector;
 
 import com.hong.dwh.database.common.HongBeanFactory;
-import com.hong.dwh.database.dto.ApiContextDto;
+import com.hong.dwh.database.dto.ApiDto;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
@@ -11,21 +11,21 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 
-public class HBaseConnectionManager {
+public class HBaseConnector {
 
-    private static HBaseConnectionManager instance = null;
+    private static HBaseConnector instance = null;
     private static Connection connection = null;
 
-    private static Logger log = LoggerFactory.getLogger(HBaseConnectionManager.class);
+    private static Logger log = LoggerFactory.getLogger(HBaseConnector.class);
 
-    public static HBaseConnectionManager getInstance() {
+    public static HBaseConnector getInstance() {
         if(instance == null){
-            instance = HongBeanFactory.getBean(HBaseConnectionManager.class);
+            instance = HongBeanFactory.getBean(HBaseConnector.class);
         }
         return instance;
     }
 
-    public Connection getConnection(ApiContextDto context){
+    public Connection getConnection(ApiDto context){
         if(connection == null){
             log.info("Creating new HBase connection");
             connection = createNewConnection(context);
@@ -49,7 +49,7 @@ public class HBaseConnectionManager {
         connection = null;
     }
 
-    private Connection createNewConnection(ApiContextDto context) {
+    private Connection createNewConnection(ApiDto context) {
         Configuration hBaseConfig = new Configuration();
         try {
             ConnectionFactory.createConnection(hBaseConfig);
