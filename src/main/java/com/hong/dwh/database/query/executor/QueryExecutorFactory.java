@@ -1,8 +1,6 @@
 package com.hong.dwh.database.query.executor;
 
 import com.hong.dwh.database.common.HongBeanFactory;
-import com.hong.dwh.database.dto.ApiContextDto;
-import com.hong.dwh.database.query.executor.impl.ElasticSearchQueryExecutor;
 import com.hong.dwh.database.query.executor.impl.HBaseQueryExecutor;
 
 public class QueryExecutorFactory {
