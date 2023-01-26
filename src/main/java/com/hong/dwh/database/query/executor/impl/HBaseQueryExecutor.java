@@ -1,7 +1,7 @@
 package com.hong.dwh.database.query.executor.impl;
 
 import com.hong.dwh.database.query.connector.HBaseConnector;
-import com.hong.dwh.database.dto.ApiContextDto;
+import com.hong.dwh.database.dto.ApiDto;
 import com.hong.dwh.database.query.builder.impl.HBaseQueryBuilder;
 import com.hong.dwh.database.query.executor.QueryExecutor;
 import org.apache.hadoop.hbase.TableName;
@@ -15,7 +15,7 @@ import java.io.IOException;
 public class HBaseQueryExecutor implements QueryExecutor {
 
     @Override
-    public Object execute(ApiContextDto context) {
+    public Object execute(ApiDto context) {
         ResultScanner scanner = null;
         Connection connection = null;
         String tableName = context.getTableName();

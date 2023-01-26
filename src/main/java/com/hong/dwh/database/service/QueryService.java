@@ -1,6 +1,6 @@
 package com.hong.dwh.database.service;
 
-import com.hong.dwh.database.dto.ApiContextDto;
+import com.hong.dwh.database.dto.ApiDto;
 import com.hong.dwh.database.query.executor.QueryExecutor;
 import com.hong.dwh.database.query.executor.QueryExecutorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ public class QueryService {
     private QueryExecutorFactory queryExecutorFactory;
 
     @Async("sqlExecutor")
-    public Object executeQuery(ApiContextDto context){
+    public Object executeQuery(ApiDto context){
         QueryExecutor queryExecutor = queryExecutorFactory.getQueryExecutor(context.getDataBaseType());
         return queryExecutor.execute(context);
     }

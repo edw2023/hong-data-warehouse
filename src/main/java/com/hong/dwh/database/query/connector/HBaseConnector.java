@@ -1,7 +1,7 @@
 package com.hong.dwh.database.query.connector;
 
 import com.hong.dwh.database.common.HongBeanFactory;
-import com.hong.dwh.database.dto.ApiContextDto;
+import com.hong.dwh.database.dto.ApiDto;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
@@ -25,7 +25,7 @@ public class HBaseConnector {
         return instance;
     }
 
-    public Connection getConnection(ApiContextDto context){
+    public Connection getConnection(ApiDto context){
         if(connection == null){
             log.info("Creating new HBase connection");
             connection = createNewConnection(context);
@@ -49,7 +49,7 @@ public class HBaseConnector {
         connection = null;
     }
 
-    private Connection createNewConnection(ApiContextDto context) {
+    private Connection createNewConnection(ApiDto context) {
         Configuration hBaseConfig = new Configuration();
         try {
             ConnectionFactory.createConnection(hBaseConfig);
