@@ -12,6 +12,6 @@ public class QueryController {
     private QueryService queryService;
 
     public void queryFromDB(ApiContextDto context){
-        queryService.executeSQL(context);
+        queryService.executeQuery(context);
     }
 }
