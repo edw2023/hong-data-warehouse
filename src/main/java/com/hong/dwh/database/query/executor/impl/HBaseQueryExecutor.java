@@ -1,6 +1,6 @@
 package com.hong.dwh.database.query.executor.impl;
 
-import com.hong.dwh.database.query.connector.HBaseConnector;
+import com.hong.dwh.database.query.connector.impl.HBaseConnector;
 import com.hong.dwh.database.dto.ApiDto;
 import com.hong.dwh.database.query.builder.impl.HBaseQueryBuilder;
 import com.hong.dwh.database.query.executor.QueryExecutor;
