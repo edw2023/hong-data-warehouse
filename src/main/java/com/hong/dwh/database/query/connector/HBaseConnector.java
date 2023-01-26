@@ -1,4 +1,4 @@
-package com.hong.dwh.database.query.connection;
+package com.hong.dwh.database.query.connector;
 
 import com.hong.dwh.database.common.HongBeanFactory;
 import com.hong.dwh.database.dto.ApiContextDto;
@@ -11,16 +11,16 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 
-public class HBaseConnectionManager {
+public class HBaseConnector {
 
-    private static HBaseConnectionManager instance = null;
+    private static HBaseConnector instance = null;
     private static Connection connection = null;
 
-    private static Logger log = LoggerFactory.getLogger(HBaseConnectionManager.class);
+    private static Logger log = LoggerFactory.getLogger(HBaseConnector.class);
 
-    public static HBaseConnectionManager getInstance() {
+    public static HBaseConnector getInstance() {
         if(instance == null){
-            instance = HongBeanFactory.getBean(HBaseConnectionManager.class);
+            instance = HongBeanFactory.getBean(HBaseConnector.class);
         }
         return instance;
     }

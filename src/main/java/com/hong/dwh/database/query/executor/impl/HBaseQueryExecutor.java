@@ -1,6 +1,6 @@
 package com.hong.dwh.database.query.executor.impl;
 
-import com.hong.dwh.database.query.connection.HBaseConnectionManager;
+import com.hong.dwh.database.query.connector.HBaseConnector;
 import com.hong.dwh.database.dto.ApiContextDto;
 import com.hong.dwh.database.query.builder.impl.HBaseQueryBuilder;
 import com.hong.dwh.database.query.executor.QueryExecutor;
@@ -9,8 +9,6 @@ import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ResultScanner;
 import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.client.Table;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
@@ -22,7 +20,7 @@ public class HBaseQueryExecutor implements QueryExecutor {
         Connection connection = null;
         String tableName = context.getTableName();
         try {
-            connection = HBaseConnectionManager.getInstance().getConnection(context);
+            connection = HBaseConnector.getInstance().getConnection(context);
             Table table = connection.getTable(TableName.valueOf(tableName));
             Scan scan = HBaseQueryBuilder.getScan(context);
             log.info(" - Scan Object from HBase");
@@ -30,7 +28,7 @@ public class HBaseQueryExecutor implements QueryExecutor {
             log.info(" - Response received from HBase");
         } catch (IOException e) {
             log.error(" - Error in getting data from HBase" + e.getMessage());
-            HBaseConnectionManager.getInstance().closeConnection();
+            HBaseConnector.getInstance().closeConnection();
             throw new RuntimeException(e);
         }
 
