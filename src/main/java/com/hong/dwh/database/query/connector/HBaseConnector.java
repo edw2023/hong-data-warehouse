@@ -1,6 +1,6 @@
 package com.hong.dwh.database.query.connector;
 
-import com.hong.dwh.database.common.HongBeanFactory;
+import com.hong.dwh.database.common.BeanFactory;
 import com.hong.dwh.database.dto.ApiDto;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.client.Connection;
@@ -20,7 +20,7 @@ public class HBaseConnector {
 
     public static HBaseConnector getInstance() {
         if(instance == null){
-            instance = HongBeanFactory.getBean(HBaseConnector.class);
+            instance = BeanFactory.getBean(HBaseConnector.class);
         }
         return instance;
     }
