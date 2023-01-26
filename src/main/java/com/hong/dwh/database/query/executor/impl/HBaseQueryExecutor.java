@@ -9,10 +9,14 @@ import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ResultScanner;
 import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.client.Table;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
 public class HBaseQueryExecutor implements QueryExecutor {
+
+    private static Logger log = LoggerFactory.getLogger(HBaseQueryExecutor.class);
 
     @Override
     public Object execute(ApiContextDto context) {
@@ -23,7 +27,9 @@ public class HBaseQueryExecutor implements QueryExecutor {
             connection = HBaseConnectionManager.getInstance().getConnection(context);
             Table table = connection.getTable(TableName.valueOf(tableName));
             Scan scan = HBaseQueryBuilder.getScan(context);
+            log.info(" - Scan Object from HBase");
             scanner = table.getScanner(scan);
+            log.info(" - Response received from HBase");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
