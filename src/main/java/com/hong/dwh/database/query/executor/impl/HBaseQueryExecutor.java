@@ -16,8 +16,6 @@ import java.io.IOException;
 
 public class HBaseQueryExecutor implements QueryExecutor {
 
-    private static Logger log = LoggerFactory.getLogger(HBaseQueryExecutor.class);
-
     @Override
     public Object execute(ApiContextDto context) {
         ResultScanner scanner = null;
