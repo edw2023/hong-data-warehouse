@@ -32,7 +32,7 @@ public class ESConnector implements DatabaseConnector {
         return instance;
     }
 
-    public Object getClient(ApiDto context){
+    public RestHighLevelClient getClient(ApiDto context){
         Map<String, Object> clientPoolParams = context.getClientPoolParams();
         if(!StringUtils.isNullOrEmpty((String) clientPoolParams.getOrDefault("renewalTime",""))){
             renewalTime = Long.parseLong((String) clientPoolParams.get(renewalTime));
@@ -41,9 +41,10 @@ public class ESConnector implements DatabaseConnector {
         if(clientPool.containsKey(connectionName)){
             return returnNewestClient(clientPool.get(connectionName),context);
         }
+        return null;
     }
 
-    private Object returnNewestClient(Map<Long, RestHighLevelClient> map, ApiDto context) {
+    private RestHighLevelClient returnNewestClient(Map<Long, RestHighLevelClient> map, ApiDto context) {
         Long clientKey = null;
         if(map.keySet().size() == 1){
             for(Long key : map.keySet()){
@@ -57,9 +58,9 @@ public class ESConnector implements DatabaseConnector {
             }
             clientKey = max;
         }
-        if(clientKey == null)
 
-        return null;
+
+        return map.get(clientKey);
     }
 
     @Override
