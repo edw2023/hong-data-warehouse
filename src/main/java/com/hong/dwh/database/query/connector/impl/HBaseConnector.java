@@ -28,7 +28,6 @@ public class HBaseConnector implements DatabaseConnector {
         return instance;
     }
 
-    @Override
     public Connection getConnection(ApiDto context){
         if(connection == null){
             log.info("Creating new HBase connection");
@@ -53,7 +52,6 @@ public class HBaseConnector implements DatabaseConnector {
         }
         connection = null;
     }
-    @Override
     public Connection createNewConnection(ApiDto context) {
         Configuration hBaseConfig = new Configuration();
         try {
