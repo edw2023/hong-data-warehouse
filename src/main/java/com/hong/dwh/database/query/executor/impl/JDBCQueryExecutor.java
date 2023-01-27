@@ -6,6 +6,7 @@ import com.hong.dwh.database.query.connector.impl.JDBCConnector;
 import com.hong.dwh.database.query.executor.QueryExecutor;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -20,6 +21,7 @@ public class JDBCQueryExecutor implements QueryExecutor {
             try {
                 if(connection != null) {
                     statement = connection.createStatement();
+                    return statement.executeQuery(sql);
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
