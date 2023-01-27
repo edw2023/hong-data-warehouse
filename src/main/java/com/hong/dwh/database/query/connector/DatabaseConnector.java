@@ -9,7 +9,5 @@ import org.slf4j.LoggerFactory;
 public interface DatabaseConnector {
     static Logger log = LoggerFactory.getLogger(DatabaseConnector.class);
 
-    public Connection createNewConnection(ApiDto context);
-    public Connection getConnection(ApiDto context);
     public void closeConnection();
 }
