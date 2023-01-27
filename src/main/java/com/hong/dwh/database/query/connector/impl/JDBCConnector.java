@@ -8,19 +8,19 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class MySQLConnector implements DatabaseConnector {
+public class JDBCConnector implements DatabaseConnector {
 
-    private static MySQLConnector instance = null;
+    private static JDBCConnector instance = null;
 
     private DataSource dataSource;
 
-    private  MySQLConnector() throws Exception {
+    private JDBCConnector() throws Exception {
         throw new Exception("Not allowed to instantiate");
     }
 
-    public static MySQLConnector getInstance() {
+    public static JDBCConnector getInstance() {
         if(instance == null){
-            instance = BeanFactory.getBean(MySQLConnector.class);
+            instance = BeanFactory.getBean(JDBCConnector.class);
         }
         return instance;
     }

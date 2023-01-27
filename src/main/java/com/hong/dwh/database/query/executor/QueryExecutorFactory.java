@@ -2,7 +2,7 @@ package com.hong.dwh.database.query.executor;
 
 import com.hong.dwh.database.common.BeanFactory;
 import com.hong.dwh.database.query.executor.impl.HBaseQueryExecutor;
-import com.hong.dwh.database.query.executor.impl.MySQLQueryExecutor;
+import com.hong.dwh.database.query.executor.impl.JDBCQueryExecutor;
 
 public class QueryExecutorFactory {
 
@@ -11,7 +11,7 @@ public class QueryExecutorFactory {
         if("HBase".equalsIgnoreCase(dataBaseType)){
             return BeanFactory.getBean(HBaseQueryExecutor.class);
         } else if("MySQL".equalsIgnoreCase(dataBaseType)){
-            return BeanFactory.getBean(MySQLQueryExecutor.class);
+            return BeanFactory.getBean(JDBCQueryExecutor.class);
         }else {
             return null;
         }
