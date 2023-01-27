@@ -5,10 +5,13 @@ import com.hong.dwh.database.common.BeanFactory;
 import com.hong.dwh.database.dto.ApiDto;
 import com.hong.dwh.database.query.connector.DatabaseConnector;
 import com.mysql.cj.util.StringUtils;
+import javafx.scene.effect.SepiaTone;
 import org.elasticsearch.client.RestHighLevelClient;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class ESConnector implements DatabaseConnector {
 
@@ -40,7 +43,22 @@ public class ESConnector implements DatabaseConnector {
         }
     }
 
-    private Object returnNewestClient(Map<Long, RestHighLevelClient> longRestHighLevelClientMap, ApiDto context) {
+    private Object returnNewestClient(Map<Long, RestHighLevelClient> map, ApiDto context) {
+        Long clientKey = null;
+        if(map.keySet().size() == 1){
+            for(Long key : map.keySet()){
+                clientKey = key;
+            }
+        } else if (map.keySet().size() > 1) {
+            Set<Long> keys = map.keySet();
+            Long max = Collections.max(keys);
+            if(!map.containsKey(max)){
+                max = keys.iterator().next();
+            }
+            clientKey = max;
+        }
+        if(clientKey == null)
+
         return null;
     }
 
