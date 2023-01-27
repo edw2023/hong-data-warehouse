@@ -10,6 +10,8 @@ public class ApiDto {
     String tableName;
     String sql;
     String driverClassName;
+    String connectionName;
     String connectionUrl;
     Map<String,Object> requestParams;
+    Map<String,Object> clientPoolParams;
 }
