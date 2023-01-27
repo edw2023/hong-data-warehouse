@@ -1,7 +1,8 @@
-package com.hong.dwh.database.query.connector;
+package com.hong.dwh.database.query.connector.impl;
 
-import com.hong.dwh.database.common.HongBeanFactory;
+import com.hong.dwh.database.common.BeanFactory;
 import com.hong.dwh.database.dto.ApiDto;
+import com.hong.dwh.database.query.connector.DatabaseConnector;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
@@ -11,20 +12,23 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 
-public class HBaseConnector {
+public class HBaseConnector implements DatabaseConnector {
 
     private static HBaseConnector instance = null;
     private static Connection connection = null;
 
-    private static Logger log = LoggerFactory.getLogger(HBaseConnector.class);
+    private  HBaseConnector() throws Exception {
+        throw new Exception("Not allowed to instantiate");
+    }
 
     public static HBaseConnector getInstance() {
         if(instance == null){
-            instance = HongBeanFactory.getBean(HBaseConnector.class);
+            instance = BeanFactory.getBean(HBaseConnector.class);
         }
         return instance;
     }
 
+    @Override
     public Connection getConnection(ApiDto context){
         if(connection == null){
             log.info("Creating new HBase connection");
@@ -37,7 +41,8 @@ public class HBaseConnector {
         return connection;
     }
 
-    public static void closeConnection() {
+    @Override
+    public void closeConnection() {
         if(connection != null) {
             try {
                 log.info("Closing old HBase connection");
@@ -48,17 +53,17 @@ public class HBaseConnector {
         }
         connection = null;
     }
-
-    private Connection createNewConnection(ApiDto context) {
+    @Override
+    public Connection createNewConnection(ApiDto context) {
         Configuration hBaseConfig = new Configuration();
         try {
-            ConnectionFactory.createConnection(hBaseConfig);
+            connection = ConnectionFactory.createConnection(hBaseConfig);
         } catch (IOException e) {
             log.error(" - Error in connecting to HBase",e);
             closeConnection();
             Thread.currentThread().interrupt();
             throw new RuntimeException(e);
         }
-        return null;
+        return connection;
     }
 }

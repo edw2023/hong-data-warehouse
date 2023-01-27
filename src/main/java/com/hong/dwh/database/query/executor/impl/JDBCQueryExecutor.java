@@ -6,9 +6,8 @@ import com.hong.dwh.database.query.executor.QueryExecutor;
 import java.sql.Connection;
 import java.sql.Statement;
 
-public class MySQLQueryExecutor implements QueryExecutor {
+public class JDBCQueryExecutor implements QueryExecutor {
 
-    @Override
     public Object execute(ApiDto context) {
         String sql = context.getSql();
         Connection connection = null;

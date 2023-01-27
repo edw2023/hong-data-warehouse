@@ -1,13 +1,11 @@
 package com.hong.dwh.database.common;
 
 
-import org.springframework.beans.factory.BeanFactory;
+public class BeanFactory {
 
-public class HongBeanFactory {
+    private static org.springframework.beans.factory.BeanFactory beanFactory;
 
-    private static BeanFactory beanFactory;
-
-    public static void  setBeanFactory(BeanFactory factory){
+    public static void  setBeanFactory(org.springframework.beans.factory.BeanFactory factory){
         beanFactory = factory;
     }
 
