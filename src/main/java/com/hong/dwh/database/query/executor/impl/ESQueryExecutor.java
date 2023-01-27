@@ -1,6 +1,7 @@
 package com.hong.dwh.database.query.executor.impl;
 
 import com.hong.dwh.database.dto.ApiDto;
+import com.hong.dwh.database.query.builder.impl.ElasticSearchQueryBuilder;
 import com.hong.dwh.database.query.executor.QueryExecutor;
 
 import java.util.ArrayList;
@@ -15,9 +16,11 @@ public class ESQueryExecutor implements QueryExecutor {
             return bulkSearch(context,result);
         }
 
+
         return null;
     }
 
     private Object bulkSearch(ApiDto context, List<Map<String, Object>> result) {
+        ElasticSearchQueryBuilder.buildBulkSearchRequest(context);
     }
 }
