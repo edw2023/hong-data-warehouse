@@ -1,25 +1,11 @@
-package com.hong.dwh.database.query.executor.impl;
+package com.hong.dwh.database.query.executor;
 
 import com.hong.dwh.database.dto.ApiDto;
-import com.hong.dwh.database.query.connector.impl.MySQLConnector;
-import com.hong.dwh.database.query.executor.QueryExecutor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.Statement;
+public interface QueryExecutor {
+    public Object execute(ApiDto context);
+    static Logger log = LoggerFactory.getLogger(QueryExecutor.class);
 
-public class MySQLQueryExecutor implements QueryExecutor {
-
-    public Object execute(ApiDto context) {
-        String sql = context.getSql();
-        Connection connection = null;
-        Statement pstmt = null;
-        try{
-            connection = MySQLConnector.getInstance().getDataSource(context);
-        } catch (Exception e){
-            log.error(e.getMessage());
-        }
-
-        return null;
-
-    }
 }

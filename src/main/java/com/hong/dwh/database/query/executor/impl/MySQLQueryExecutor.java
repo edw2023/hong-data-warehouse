@@ -8,7 +8,6 @@ import java.sql.Statement;
 
 public class MySQLQueryExecutor implements QueryExecutor {
 
-    @Override
     public Object execute(ApiDto context) {
         String sql = context.getSql();
         Connection connection = null;
