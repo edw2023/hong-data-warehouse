@@ -7,4 +7,6 @@ public class ApiDto {
     String dataBaseType;
     String tableName;
     String sql;
+    String driverClassName;
+    String connectionUrl;
 }
